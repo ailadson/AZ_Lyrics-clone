@@ -1,0 +1,6 @@
+<h1>Login</h1>
+
+<%=  render("shared/credentials_form",
+            user: @user,
+            submit_value: "Login",
+            form_action: session_url) %>
