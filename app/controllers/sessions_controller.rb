@@ -11,10 +11,17 @@ class SessionsController < ApplicationController
     )
 
     if @user
-      login!(@user)
-      redirect_to user_url(@user)
+
+      if @user.activated
+        login!(@user)
+        redirect_to user_url(@user)
+      else
+        flash.now[:errors] = ["Account not activated"]
+        render :new
+      end
+
     else
-      flash.now[:errors] = @user.errors.full_messages
+      flash.now[:errors] = ["Invalid Login"]
       render :new
     end
   end

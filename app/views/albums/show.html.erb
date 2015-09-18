@@ -1,0 +1,12 @@
+<%= button_to "Delete #{@album.name}", album_url(@album), method: :delete %>
+<h1><%= @album.name  %>; <%= @album.recording_type %> Album</h1>
+<%= link_to "Add A Track", new_album_track_url(@album) %>
+
+<h2>Tracks</h2>
+<ul>
+  <% @album.tracks.each do |track| %>
+    <li><%= link_to track.name, track_url(track) %>
+  <% end %>
+</ul>
+<br>
+<%= link_to "Back to #{@album.band.name}'s Page", band_url(@album.band_id) %>

@@ -1,0 +1,48 @@
+<h1>Add Track to <%= @album.name %></h1>
+
+<form action="<%= tracks_url %>" method="POST">
+  <%= auth_token %>
+
+  <label for="track_name">Name</label><br>
+  <input type="text"
+         name="track[name]"
+         id="track_name"
+         value="<%= @track.name %>">
+
+  <br>
+  <br>
+
+  <label for="album_id">Album<label><br>
+  <select name="track[album_id]" id="album_id">
+    <option value="<%= @album.id %>" selected>
+      <%= @album.name %>
+    </option>
+  </select>
+
+  <br>
+  <br>
+
+  <label for="feature_type">Featured as:</label>
+  <% Track::FEATURE_TYPES.each do |type| %>
+   <br>
+    <input type="radio"
+           name="track[feature_type]"
+           value="<%= type %>"
+           id="feature_type"
+           <%= "checked" if type == @track.feature_type %>>
+     <%= type %> Track
+  <% end %>
+
+  <br>
+  <br>
+
+  <label for="lyrics">Lyrics</label><br>
+  <textarea name="track[lyrics]"
+            id="lyrics"><%= @track.lyrics %></textarea>
+
+  <br>
+  <br>
+
+  <input type="submit" value="Add Track">
+
+</form>

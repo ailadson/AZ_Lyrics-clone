@@ -1,0 +1,40 @@
+<%= link_to "Go back to artist's page", band_url(@album.band) %>
+<h1>Add Album</h2>
+
+<form action="<%= albums_url %>" method="POST">
+  <%= auth_token %>
+  <label for="album_name">Title</label><br>
+  <input type="text"
+         name="album[name]"
+         value="<%= @album.name %>">
+  <br>
+  <br>
+
+  <label for="band_id">Artist</label><br>
+  <select id="band_id" name="album[band_id]">
+    <% @bands.each do |band| %>
+      <option value="<%= band.id %>"
+              <%= "selected" if band.id == @album.band_id %>>
+          <%= band.name %>
+      </option>
+    <% end %>
+  </select>
+
+  <br>
+  <br>
+
+  <label for="live_recording">Recording Type</label>
+  <% Album::RECORDING_TYPE.each do |type| %>
+   <br>
+    <input type="radio"
+           name="album[recording_type]"
+           value="<%= type %>"
+           id="live_recording"
+           <%= "checked" if type == @album.recording_type %>> <%= type %>
+  <% end %>
+
+  <br>
+  <br>
+
+  <input type="submit" value="Add">
+</form>

@@ -1,0 +1,9 @@
+<h1>Add a New Muscian to Our List</h1>
+<form action="<%= bands_url %>" method="POST">
+  <%= auth_token %>
+  <label for="band_name">Name<label><br>
+  <input name="band[name]" type="text" id="band_name">
+  <br>
+  <br>
+  <input type="submit" value="Add 'em'!">
+</form>
